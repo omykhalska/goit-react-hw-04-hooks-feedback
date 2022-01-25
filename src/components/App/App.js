@@ -11,8 +11,8 @@ function App() {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
-  const leaveFeedback = type => {
-    switch (type) {
+  const leaveFeedback = feedbackType => {
+    switch (feedbackType) {
       case 'good':
         setGood(prevValue => prevValue + 1);
         break;
