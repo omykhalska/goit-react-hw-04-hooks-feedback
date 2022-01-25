@@ -7,9 +7,12 @@ import { Container } from './App.styled';
 
 function App() {
   const feedbackTypes = ['good', 'neutral', 'bad'];
+
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
+
+  const countTotalFeedback = good + bad + neutral;
 
   const leaveFeedback = feedbackType => {
     switch (feedbackType) {
@@ -27,12 +30,8 @@ function App() {
     }
   };
 
-  const countTotalFeedback = () => {
-    return good + bad + neutral;
-  };
-
   const countPositiveFeedbackPercentage = () =>
-    Math.round((good * 100) / countTotalFeedback());
+    Math.round((good * 100) / countTotalFeedback);
 
   return (
     <Container>
@@ -42,7 +41,7 @@ function App() {
           onLeaveFeedback={leaveFeedback}
         />
       </Section>
-      {countTotalFeedback() === 0 ? (
+      {countTotalFeedback === 0 ? (
         <Notification message="There is no feedback" />
       ) : (
         <Section title={'Statistics'}>
@@ -50,7 +49,7 @@ function App() {
             good={good}
             neutral={neutral}
             bad={bad}
-            total={countTotalFeedback()}
+            total={countTotalFeedback}
             positivePercentage={countPositiveFeedbackPercentage()}
           />
         </Section>
